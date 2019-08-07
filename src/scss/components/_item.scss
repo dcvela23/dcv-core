@@ -1,0 +1,71 @@
+.item {
+  &--icon,
+  &--cta{
+    position: relative;
+    padding-left: 5.625rem;
+
+    @include screenLessThan(md) {
+      padding-left: 0;
+    }
+
+
+    .item__icon{
+      @include pos(absolute, 0, auto, auto, 0);
+      @include size(3.4375rem, 3.4375rem);
+      border-radius: 50%;
+      background-color: $red;
+
+      @include screenLessThan(md) {
+        @include pos(relative, 0, auto, auto, 0);
+        margin-bottom: 1rem;
+      }
+
+      @include screenLessThan(sm) {
+        width: 2.5rem;
+        height: 2.5rem;
+      }
+
+
+      svg{
+        max-width: 1.875rem;
+        fill: white;
+        @include pos(absolute, 50%, auto, auto, 50%);
+        transform: translate(-50%, -50%);
+
+        @include screenLessThan(sm) {
+          max-width: 1.5rem;
+        }
+      }
+    }
+
+    .item__content{
+      p + p {
+        margin-top:  1.5rem;
+        @include screenLessThan(sm) {
+          margin-top: .5rem;
+          margin-bottom: 1.5rem;
+        }
+      }
+      @include screenLessThan(sm) {
+        .text--subheadline-small{
+
+        }
+      }
+    }
+  }
+
+  &--cta{
+    .item__icon{
+      background: transparent;
+
+      svg {
+        max-width: none;
+      }
+    }
+    .item__content{
+      p + p {
+        margin-top:  0.375rem;
+      }
+    }
+  }
+}

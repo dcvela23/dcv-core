@@ -1,0 +1,11 @@
+include ./../../mixins/section
+include ./../../mixins/image
+
+-var data = $i18n.COMPONENTS
+
+div(class="component__block image")
+  div(class="component__block__title") 
+    span Images
+  +section('small', 'small', 'small', 'small', 'white')
+    .imageBlock
+      +image(data.img, 'cover', 'center', 'fit')

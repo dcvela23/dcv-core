@@ -1,0 +1,27 @@
+
+.button{
+  @each $key, $value in $btnSet {
+    &--#{$key}{
+      @include useBtn($key)
+    };
+  };
+
+  @each $key, $value in $typeSet {
+    &.#{$key}{
+      .paragraph{
+        @include useFont($key);
+      }
+    }
+  };
+
+  &.center{
+    display: table;
+    margin: 0 auto;
+  }
+
+  &.white{
+    *{
+      color: $white;
+    }
+  }
+}

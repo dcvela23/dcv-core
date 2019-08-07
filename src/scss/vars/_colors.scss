@@ -1,0 +1,24 @@
+$white: #FFFFFF;
+$black: #444444;
+$gray: #8E8C8C;
+$grayBg: #F7F7F7;
+//
+$red: #F3474F;
+$purple: #E54472;
+$yellow: #F0DA2C;
+//
+$mainGradient:-223deg, #F3474F 2%, #E54472 52%;
+
+//
+$colorSet: (
+  white: $white,
+  black: $black,
+  gray: $gray,
+  red: $red,
+  purple: $purple,
+  yellow: $yellow
+);
+
+$gradientSet: (
+  mainGradient: $mainGradient
+)

@@ -1,0 +1,50 @@
+.footer {
+  width: 100%;
+  max-width: $container-app-maxWidth;
+  margin: 0 auto;
+
+  * {
+      color: $white;
+  }
+
+  &__wrapper{
+    margin: 0 auto;
+    display: table;
+  }
+  &__links{
+    display: inline-block;
+  }
+
+  &__links{
+    a {
+      display: block;
+      border-bottom: 0.125rem solid transparent;
+      margin-bottom: 1.5rem;
+
+      &:last-child{
+        margin-right: 0;
+      }
+
+      &:hover,
+      &.active{
+        border-bottom: 0.125rem solid $red;
+      }
+    }
+  }
+
+  &__info {
+      p:first-child{
+        margin-bottom: 3rem;
+      }
+  }
+
+  @include screenLessThan(sm){
+    .footer__wrapper{
+      width: calc(100% - 3rem);
+
+      picture{
+        margin-bottom: 1rem;
+      }
+    }
+  }
+}

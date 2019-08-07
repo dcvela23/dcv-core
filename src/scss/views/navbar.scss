@@ -1,0 +1,261 @@
+#nav{
+    z-index: $headerZindex;
+    @include pos(fixed, 0, auto, auto, 0);
+    @include size(100%, auto);
+    @include transition([all]);
+
+    *{
+      @include transition([all]);
+    }
+
+    .navbar {
+      width: 100%;
+      max-width: $container-app-maxWidth;
+      margin: 0 auto;
+
+      &__logo{
+        @include size(100%, 100%);
+        position: relative;
+        a{
+          @include size(100%, 100%);
+          @include pos(absolute, 50%, auto, auto, auto);
+          transform: translateY(-50%);
+        }
+      }
+      &__mobile{
+          display: none;
+      }
+      &__links,
+      &__buttons{
+        display: inline-block;
+      }
+
+      &__buttons{
+        margin-left: 4rem;
+
+        p {
+          display: inline;
+        }
+        p + .button{
+          margin-left: 1rem;
+        }
+      }
+      &__links{
+        a {
+          display: inline-block;
+          margin-right: 3rem;
+          border-bottom: 0.125rem solid transparent;
+
+          &:last-child{
+            margin-right: 0;
+          }
+
+          &:hover,
+          &.active{
+            border-bottom: 0.125rem solid $red;
+          }
+        }
+        &--dropdown{
+          position: relative;
+          &__items{
+            @include pos(absolute, 1.3rem, auto, auto, -2rem);
+            position: absolute;
+            min-width: 100%;
+            box-sizing: border-box;
+            max-height: 0;
+            overflow: hidden;
+            &__wrapper{
+              @include size(100%, auto);
+              background: $red;
+              padding: 1rem;
+            }
+            a{
+              margin-bottom: 1rem;
+              &:hover{
+                border-bottom: 0.125rem solid $white;
+              }
+              .text{
+                color: $white;
+              }
+            }
+            &:hover{
+              max-height: none;
+            }
+          }
+          &:hover{
+            > .navbar__links--dropdown__items{
+              max-height: none;
+              padding-top: 2rem;
+            }
+          }
+        }
+      }
+
+      @include screenLessThan(md){
+        height: 2.5rem;
+        box-shadow: $shadowLight;
+        background: $white;
+        box-sizing: border-box;
+        padding: 0;
+
+        &__wrapper{
+          @include pos(absolute, 0, 0, auto, auto);
+            @include size(100%, 100%);
+
+            .navbar__logo{
+              @include pos(absolute, 0, 0, 0, 0);
+              z-index: 1;
+
+              a{
+                @include size(40%, 100%);
+                max-width: 18.75rem;
+                padding-top: .5rem;
+                padding-bottom: .5rem;
+                margin-left: 3rem;
+
+                img{
+                  object-position: left;
+                }
+              }
+            }
+        }
+
+        .navbar__mobile{
+          @include pos(absolute, 0, 3rem, auto, auto);
+          @include size(2.5rem, 100%)
+          padding: .5rem;
+          box-sizing: border-box;
+          z-index: 100;
+          span {
+            @include size(100%, 100%)
+          }
+
+          &__close{
+            display: none !important;
+          }
+        }
+
+
+        .navbar__right{
+          @include pos(fixed, 0, 0, 0, 0);
+          padding-top: 4rem;
+          background: $white;
+          display: inline-block;
+          @include transition([all]);
+          transform: translateX(100%);
+
+          .navbar__links{
+            display: block;
+            width: 100%;
+            padding: 0 3rem;
+            box-sizing: border-box;
+
+            a, span{
+              display: block;
+              width: 100%;
+              margin-bottom: 1rem;
+
+              &:hover{
+                  border-color: transparent;
+              }
+
+              &:last-child{
+                margin-bottom: 0;
+              }
+
+              .text{
+                text-align: center;
+                color: black;
+              }
+              .navbar__links--dropdown__items{
+                max-height: none;
+                position: static;
+                padding: 0;
+
+                &__wrapper {
+                  margin-bottom: 0;
+
+                  .text{
+                      color: white;
+                  }
+                }
+              }
+            }
+          }
+        }
+        .navbar__buttons{
+          display: none;
+        }
+
+        &.opened{
+          .navbar__mobile__open{
+            display: none;
+          }
+          .navbar__mobile__close{
+            display: inline-block !important;
+          }
+          .navbar__right{
+            transform: translateX(0);
+          }
+        }
+
+      }
+      @include screenLessThan(sm){
+        .navbar__logo a{
+          margin-left: 1.5rem !important;
+        }
+        .navbar__mobile{
+          right: 1.5rem;
+        }
+      }
+    }
+
+    &.sticky{
+      background: white;
+      box-shadow: $shadowLight;.pd{
+        padding-top: 0rem;
+        padding-bottom: 0rem;
+      }
+
+      @include screenMoreThan(sm){
+        .navbar{
+          position: relative;
+          &:before{
+            @include beforeSymbol(calc((100vw - 100%) + 12rem), 100%, 0, auto, auto, calc(100% - 3rem), $white, 0);
+            z-index: 10;
+          }
+        }
+      }
+
+      .navbar{
+        padding: .75rem 0;
+
+        button {
+          transform: scale(.85);
+        }
+
+        .navbar__links--dropdown__items{
+          &__wrapper{
+            box-shadow: $shadowLight;
+          }
+        }
+      }
+    }
+}
+
+#services{
+  .navbar__links,
+  .navbar__buttons{
+    .text{
+      color: $white;
+    }
+  }
+  .sticky{
+    .navbar__links,
+    .navbar__buttons{
+      .text{
+        color: black;
+      }
+    }
+  }
+}

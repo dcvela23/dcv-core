@@ -1,0 +1,19 @@
+include ./icon.pug
+include ./paragraph.pug
+
+mixin list(content, type, color, direction)
+  div(class="list list--" + type + " list--" + color)
+    div(class="grid grid--" + direction)
+      each item in content
+        div(class="list__item")
+          if type === 'icons'
+            +icon(item.icon)
+            +paragraph(item.text, 'subheadline-xSmall')
+          if type === 'menu'  
+            if item.dataItem
+              div(data-item=item.dataItem)
+                +icon(item.icon)
+                +paragraph(item.text, 'subheadline-small')
+            else
+              +paragraph(item.text, 'subheadline-xSmall')
+              +icon(item.icon)

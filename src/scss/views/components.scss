@@ -1,0 +1,68 @@
+#components{
+  padding-top: 3rem;
+  .component__block{
+    padding: 1.5rem 0;
+
+    &__title{
+        border-top: 1px solid $red;
+        margin: 1rem 3rem 0;
+        padding: 2rem 0;
+
+        span {
+          padding: 1rem 2rem;
+          color: $white;
+          background: $red;
+        }
+    }
+
+    &__subtitle{
+      margin: 3rem 0 1rem;
+      color: $red;
+      display: block;
+      &:first-of-type{
+        margin-top: 0;
+      }
+    }
+
+    .image{
+      img{
+        max-width: 31.25rem;
+      }
+    }
+
+    &__transparent{
+      .section {
+        &__wrapper{
+            background: transparent;
+        }
+      }
+    }
+
+    &.sectionBlock {
+      .section__wrapper{
+          background: $white !important;
+      }
+    }
+
+
+    .iconBlock{
+      width: 5rem;
+    }
+
+    .description{
+      max-width: 30rem;
+    }
+
+    .item{
+      max-width: 24.25rem;
+    }
+
+    .list--menu{
+      max-width: 20rem;
+    }
+
+    #nav{
+      position: relative !important;
+    }
+  }
+}

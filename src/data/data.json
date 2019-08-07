@@ -1,0 +1,186 @@
+{
+  "NAVBAR": {
+    "logo": {
+      "link": "/",
+      "alt": "Lorem ipsum dolor sit amet",
+      "dataLink": "home-hero",
+      "img": {
+        "urlMobile" : "./public/images/dcv_logo.svg",
+        "urlMobile2x" : "./public/images/dcv_logo.svg",
+        "urlTablet" : "./public/images/dcv_logo.svg",
+        "urlTablet2x" : "./public/images/dcv_logo.svg",
+        "urlDesktop" : "./public/images/dcv_logo.svg",
+        "urlDesktop2x" : "./public/images/dcv_logo.svg",
+        "urlDesktopLarge" : "./public/images/dcv_logo.svg",
+        "urlDesktopLarge2x" : "./public/images/dcv_logo.svg",
+        "alt": "Lorem ipsum"
+      }
+    },
+    "mobile": {
+      "open": "list-menu",
+      "close": "cross"
+    },
+    "links": [
+      {
+        "link": "/",
+        "text": "Animation",
+        "linkType": "anchor-link",
+        "dataLink": "home-hero"
+      }
+    ]
+  },
+  "FOOTER": {
+    "logo": {
+      "link": "/",
+      "alt": "Lorem ipsum dolor sit amet",
+      "img": {
+        "urlMobile" : "./public/images/dcv_logo.svg",
+        "urlMobile2x" : "./public/images/dcv_logo.svg",
+        "urlTablet" : "./public/images/dcv_logo.svg",
+        "urlTablet2x" : "./public/images/dcv_logo.svg",
+        "urlDesktop" : "./public/images/dcv_logo.svg",
+        "urlDesktop2x" : "./public/images/dcv_logo.svg",
+        "urlDesktopLarge" : "./public/images/dcv_logo.svg",
+        "urlDesktopLarge2x" : "./public/images/dcv_logo.svg",
+        "alt": "Lorem ipsum"
+      }
+    },
+    "links": [
+      {
+        "link": "/",
+        "text": "Animation",
+        "linkType": "anchor-link",
+        "dataLink": "home-hero"
+      }
+    ],
+    "info": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In blandit, neque et sodales viverra, lectus erat elementum felis, et imperdiet ligula neque eget est.",
+    "contact": [
+      {
+        "text": "Lorem ipsum dolor sit amet"
+      },
+      {
+        "text": "Lorem ipsum dolor sit amet"
+      }
+    ]
+  },
+  "HOME_HERO": {
+    "bg": {
+      "img": {
+        "urlMobile" : "./public/images/home_hero_bg.svg",
+        "urlMobile2x" : "./public/images/home_hero_bg.svg",
+        "urlTablet" : "./public/images/home_hero_bg.svg",
+        "urlTablet2x" : "./public/images/home_hero_bg.svg",
+        "urlDesktop" : "./public/images/home_hero_bg.svg",
+        "urlDesktop2x" : "./public/images/home_hero_bg.svg",
+        "urlDesktopLarge" : "./public/images/home_hero_bg.svg",
+        "urlDesktopLarge2x" : "./public/images/home_hero_bg.svg",
+        "alt": "Lorem ipsum"
+      }
+    },
+    "intro": {
+      "title": "Dcv playground",
+      "text": "The best is always yet to come"
+    }
+  },
+
+  "COMPONENTS": {
+    "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In blandit, neque et sodales viverra, lectus erat elementum felis, et imperdiet ligula neque eget est.",
+    "btn": {
+      "text" : "Lorem",
+      "link": "#"
+    },
+    "img": {
+      "urlMobile" : "./public/images/test.png",
+      "urlMobile2x" : "./public/images/test.png",
+      "urlTablet" : "./public/images/test.png",
+      "urlTablet2x" : "./public/images/test.png",
+      "urlDesktop" : "./public/images/test.png",
+      "urlDesktop2x" : "./public/images/test.png",
+      "urlDesktopLarge" : "./public/images/test.png",
+      "urlDesktopLarge2x" : "./public/images/test.png",
+      "alt": "Lorem ipsum"
+    },
+    "description": {
+      "main": {
+        "title": "Lorem ipsum dolor sit amet",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In blandit, neque et sodales viverra, lectus erat elementum felis, et imperdiet ligula neque eget est.",
+        "mainBtn": {
+          "text" : "Lorem",
+          "link": "#"
+        },
+        "secondaryBtn": {
+          "text" : "Lorem",
+          "link": "#"
+        }
+      },
+      "section": {
+        "title": "Lorem ipsum dolor sit amet",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In blandit, neque et sodales viverra, lectus erat elementum felis, et imperdiet ligula neque eget est.",
+        "list": {
+          "direction": "column",
+          "items": [
+            {
+              "text": "Lorem ipsum",
+              "icon": "paper"
+            },
+            {
+              "text": "Lorem ipsum",
+              "icon": "paper"
+            },
+            {
+              "text": "Lorem ipsum",
+              "icon": "paper"
+            },
+            {
+              "text": "Lorem ipsum",
+              "icon": "paper"
+            }
+          ]
+        }
+      },
+      "feature": {
+        "title": "Lorem ipsum dolor sit amet",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In blandit, neque et sodales viverra, lectus erat elementum felis, et imperdiet ligula neque eget est.",
+        "list": {
+          "direction": "row",
+          "items": [
+            {
+              "text": "Lorem ipsum",
+              "icon": "paper"
+            },
+            {
+              "text": "Lorem ipsum",
+              "icon": "paper"
+            }
+          ]
+        },
+        "mainBtn": {
+          "text" : "Lorem",
+          "link": "#"
+        },
+        "secondaryBtn": {
+          "text" : "Lorem",
+          "link": "#"
+        }
+      }
+    },
+    "listMenu": [
+      {
+        "text": "Lorem ipsum",
+        "icon": "more"
+      },
+      {
+        "text": "Lorem ipsum",
+        "icon": "more"
+      },
+      {
+        "text": "Lorem ipsum",
+        "icon": "more"
+      },
+      {
+        "text": "Lorem ipsum",
+        "icon": "more"
+      }
+    ]
+  }
+}

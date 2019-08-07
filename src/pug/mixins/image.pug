@@ -1,0 +1,7 @@
+//check breakpoints vars
+mixin image(content, fit, align, hAuto)
+  picture(class="image image--"+ fit + " image--" +align + " image--" + hAuto)
+    source(class="image__img" srcset='' + content.urlDesktopLarge + ' 3039w, ' + content.urlDesktopLarge2x + ' 6078w', media='(min-width: 1499px)')
+    source(class="image__img" srcset='' + content.urlDesktop + ' 1499w, ' + content.urlDesktop2x + ' 2998w', media='(min-width: 1023px)')
+    source(class="image__img" srcset='' + content.urlTablet + ' 1023w, ' + content.urlTablet2x + ' 2046w', media='(min-width: 767px)')
+    img(class="image__img" srcset='' + content.urlMobile + ' 767w, ' + content.urlMobile2x + ' 1534w', alt=content.alt)

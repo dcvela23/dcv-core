@@ -1,0 +1,16 @@
+include ./../../mixins/section
+include ./../../mixins/title
+include ./../../mixins/image
+include ./../../mixins/description
+include ./../../mixins/paragraph
+include ./../../mixins/margin
+include ./../../mixins/padding
+
+-var data = $i18n.HOME_HERO
+
+section#home-hero.home-hero
+  +padding('large','zero','zero','zero')
+    +section('large', 'small', 'large', 'small', 'transparent')
+      div(class="grid")
+        div(class="grid__cell grid__cell-md-6 grid__cell-sm-12")
+          +description(data.intro, "main", "black", "left")

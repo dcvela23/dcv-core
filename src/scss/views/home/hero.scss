@@ -1,0 +1,76 @@
+.home-hero{
+  position: relative;
+
+
+  &__bg{
+    @include pos(absolute, 0, auto, auto, 0);
+    @include size(100%, calc(100% - 6.25rem));
+    z-index: 0;
+
+    img{
+      object-position: top right;
+    }
+  }
+
+  &__bottom{
+    height: 70px;
+    .image{
+      width: auto;
+      margin-right: 3rem;
+
+      &:nth-child(2) img{
+        padding: 1.25rem;
+      }
+    }
+  }
+
+  .section {
+    height: 100%;
+    box-sizing: border-box;
+    z-index: 1;
+    position: relative;
+
+    .pd{
+      width: 100%;
+      padding-top: 10vh;
+    }
+
+    &__wrapper{
+      height: 100%;
+
+      .description{
+        max-width: 30.5rem;
+      }
+    }
+  }
+  @include screenLessThan(md){
+    height: auto;
+    max-height: 35rem;
+
+    > .pd{
+      padding-top: 0 !important;
+    }
+
+    .image--cover .image__img{
+        object-fit: contain;
+    }
+
+    .button{
+      display: inline-block;
+      margin-bottom: 1.5rem;
+    }
+
+    .home-hero__bottom{
+        height: 60px;
+    }
+
+    .home-hero__bottom .image{
+      max-width: 30%;
+    }
+  }
+
+  @include screenLessThan(md){
+    padding-top: 5rem;
+  }
+
+}

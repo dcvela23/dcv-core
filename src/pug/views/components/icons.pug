@@ -1,0 +1,11 @@
+include ./../../mixins/section
+include ./../../mixins/icon
+
+-var data = $i18n.COMPONENTS
+
+div(class="component__block")
+  div(class="component__block__title") 
+    span Icons
+  +section('medium', 'medium', 'white')
+    .iconBlock
+      +icon('test')

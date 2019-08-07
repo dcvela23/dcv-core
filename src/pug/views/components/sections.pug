@@ -1,0 +1,21 @@
+include ./../../mixins/section
+
+div(class="component__block sectionBlock")
+  div(class="component__block__title") 
+    span Section
+  div(class="component__block__subtitle") 
+    span Padding Large
+  +section('large', 'large', 'large', 'large', 'purple')
+    p Content
+  div(class="component__block__subtitle") 
+    span Padding medium
+  +section('medium', 'medium', 'medium', 'medium', 'purple')
+    p Content
+  div(class="component__block__subtitle") 
+    span Padding small
+  +section('small', 'small', 'small', 'small', 'purple')
+    p Content
+  div(class="component__block__subtitle") 
+    span Padding xSmall
+  +section('xSmall', 'xSmall', 'xSmall', 'xSmall', 'purple')
+    p Content

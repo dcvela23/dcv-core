@@ -1,0 +1,46 @@
+include ./../../mixins/section
+include ./../../mixins/paragraph
+include ./../../mixins/title
+
+-var data = $i18n.COMPONENTS
+
+div(class="component__block type")
+  div(class="component__block__title") 
+    span type
+  +section('small', 'small', 'small', 'small', 'white')
+    div(class="component__block__subtitle") 
+      span headline-large
+    +title(data.text, 'headline-large', 'h1')
+    div(class="component__block__subtitle") 
+      span headline-medium
+    +title(data.text, 'headline-medium', 'h2')
+    div(class="component__block__subtitle") 
+      span headline-small
+    +title(data.text, 'headline-small', 'h3')
+    div(class="component__block__subtitle") 
+      span headline-xSmall
+    +title(data.text, 'headline-xSmall', 'h4')
+    div(class="component__block__subtitle") 
+      span subheadline-large
+    +paragraph(data.text, 'subheadline-large')
+    div(class="component__block__subtitle") 
+      span subheadline-medium
+    +paragraph(data.text, 'subheadline-medium')
+    div(class="component__block__subtitle") 
+      span subheadline-small
+    +paragraph(data.text, 'subheadline-small')
+    div(class="component__block__subtitle") 
+      span text-large
+    +paragraph(data.text, 'text-large')
+    div(class="component__block__subtitle") 
+      span text-medium
+    +paragraph(data.text, 'text-medium')
+    div(class="component__block__subtitle") 
+      span text-small
+    +paragraph(data.text, 'text-small')
+    div(class="component__block__subtitle") 
+      span text-bold-large
+    +paragraph(data.text, 'text-bold-large')
+    div(class="component__block__subtitle") 
+      span text-bold-medium
+    +paragraph(data.text, 'text-bold-medium')

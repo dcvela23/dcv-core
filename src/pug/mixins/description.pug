@@ -1,0 +1,38 @@
+include ./title.pug
+include ./paragraph
+include ./list
+
+mixin description(content, type, color, align)
+  div(class="description description--" + type + " description--" + color + " " + align)
+    if type === 'main'
+      +title(content.title, 'headline-large', 'h1')
+    else if type === 'section'
+      +title(content.title, 'headline-medium', 'h2')
+    else
+      +title(content.title, 'headline-small', 'h3')
+    //
+    if content.text
+      if type === 'main'
+        +paragraph(content.text, 'text-large')
+      else if type === 'section'
+        +paragraph(content.text, 'text-medium')
+      else
+        +paragraph(content.text, 'text-medium')
+    //
+    if content.mainBtn && type === 'main'
+      +button(content.mainBtn, 'purpleLarge', '#')
+    if content.secondaryBtn && type === 'main'
+      +button(content.secondaryBtn, 'ghostLarge', '#')
+    //
+    if content.list
+      if content.list.direction === 'row'
+        +list(content.list.items, "icons", "black", 'row')
+      else 
+        +list(content.list.items, "icons", "black", 'column')
+    //
+    if content.mainBtn && (type === 'feature' || type === 'section')
+      +button(content.mainBtn, 'purpleMedium', '#')
+    if content.secondaryBtn && (type === 'feature' || type === 'section')
+      +button(content.secondaryBtn, 'ghostMedium', '#')
+
+      

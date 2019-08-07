@@ -1,0 +1,46 @@
+include ./../mixins/paragraph
+include ./../mixins/button
+include ./../mixins/image
+include ./../mixins/icon
+include ./../mixins/section
+
+-var data = $i18n.NAVBAR
+
+nav#nav
+  div(class="navbar section--pt-small section--pb-small")
+    +section('small', 'small', 'small', 'small', 'transparent')
+      div(class="navbar__mobile")
+        span(class="navbar__mobile__open")
+          +icon(data.mobile.open)
+        span(class="navbar__mobile__close")
+          +icon(data.mobile.close)
+      div(class="navbar__wrapper")
+        div(class="grid")
+          div(class="grid__cell-md-2")
+            div(class="navbar__logo")
+              a(href=data.logo.link data-link=data.logo.dataLink)
+                +image(data.logo.img, 'contain', 'center', 'fit')
+          div(class="grid__cell-md-10")
+            div(class="grid grid--ai-middle grid--jc-bottom navbar__right")
+              div(class="navbar__links")
+                each link in data.links
+                  if link.linkType === 'dropdown'
+                    if link.link
+                      span(class="navbar__links--dropdown")
+                        a(class="navbar__links--dropdown__mainLink" data-link=link.dataLink href=link.link)
+                          +paragraph(link.text, 'text-medium')
+                        span(class="navbar__links--dropdown__items")
+                          span(class="navbar__links--dropdown__items__wrapper")
+                            each children in link.children
+                              a(href=children.link)
+                                +paragraph(children.text, 'text-medium')
+                    else
+                      span(class="navbar__links--dropdown")
+                        +paragraph(link.text, 'text-medium')
+                        div(class="navbar__links--dropdown__items")
+                          each children in link.children
+                            a(href=children.link)
+                              +paragraph(children.text, 'text-medium')
+                  else
+                    a(href=link.link data-link=link.dataLink)
+                      +paragraph(link.text, 'text-medium')

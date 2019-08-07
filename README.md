@@ -1,1 +1,2 @@
-# dcv-core
+//TODO
+- modernizr imgs

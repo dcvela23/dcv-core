@@ -1,0 +1,9 @@
+include ./padding.pug
+
+
+mixin section(pt, pr, pb, pl, bg)
+  div(class="section bg-" + bg)
+    +padding(pt, pr, pb, pl)
+      div(class="section__wrapper")
+        if block
+          block

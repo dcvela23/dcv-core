@@ -1,0 +1,68 @@
+.pd{
+  box-sizing: border-box;
+
+  @each $key in ['medium', 'small', 'xSmall', 'large'] {
+    $padding: false;
+
+    @if $key == 'large' { $padding: $padding-large}
+    @if $key == 'medium' { $padding: $padding-medium}
+    @if $key == 'small' { $padding: $padding-small}
+    @if $key == 'xSmall' { $padding: $padding-xSmall}
+
+    &.pd--t-#{$key}{
+      padding-top: $padding
+    }
+    &.pd--r-#{$key}{
+      padding-right: $padding
+    }
+    &.pd--b-#{$key}{
+      padding-bottom: $padding
+    }
+    &.pd--l-#{$key}{
+      padding-left: $padding
+    }
+  };
+
+  @include screenLessThan(sm){
+    &.pd--t-small,
+    &.pd--r-small,
+    &.pd--b-small,
+    &.pd--l-small{
+      padding: 1.25rem !important;
+    }
+  }
+
+}
+
+.mg{
+  box-sizing: border-box;
+
+  @for $i from 0 through 10 {
+    $margin: false;
+
+    @if $i == 0 { $margin: 0}
+    @if $i == 1 { $margin: $margin-1}
+    @if $i == 2 { $margin: $margin-2}
+    @if $i == 3 { $margin: $margin-3}
+    @if $i == 4 { $margin: $margin-4}
+    @if $i == 5 { $margin: $margin-5}
+    @if $i == 6 { $margin: $margin-6}
+    @if $i == 7 { $margin: $margin-7}
+    @if $i == 8 { $margin: $margin-8}
+    @if $i == 9 { $margin: $margin-9}
+    @if $i == 10 { $margin: $margin-10}
+
+    &.mg--t-#{$i}{
+      margin-top: $margin
+    }
+    &.mg--r-#{$i}{
+      margin-right: $margin
+    }
+    &.mg--b-#{$i}{
+      margin-bottom: $margin
+    }
+    &.mg--l-#{$i}{
+      margin-left: $margin
+    }
+  }
+}

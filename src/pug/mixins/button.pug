@@ -1,0 +1,8 @@
+mixin button(content, type, link)
+  if link !== 'undefined'
+    a(class="button" href=content.link)
+      button(class="button--" + type)
+        p(class="paragraph")=content.text
+  else
+    span(class="button")
+      button(class="button--" + type)=content.text

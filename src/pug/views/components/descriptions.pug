@@ -1,0 +1,18 @@
+include ./../../mixins/section
+include ./../../mixins/description
+
+-var data = $i18n.COMPONENTS
+
+div(class="component__block")
+  div(class="component__block__title") 
+    span Description
+  +section('small', 'small', 'small', 'small', 'white')
+    div(class="component__block__subtitle") 
+      span Main
+    +description(data.description.main, "main", "black", "left")
+    div(class="component__block__subtitle") 
+      span Section
+    +description(data.description.section, "section", "black", "left")
+    div(class="component__block__subtitle") 
+      span Feature
+    +description(data.description.feature, "feature", "black", "left")

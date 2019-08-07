@@ -1,0 +1,11 @@
+mixin title(content, type, headline)
+  if headline === 'h1'
+    h1(class="headline headline--" + type)=content
+  if headline === 'h2'
+    h2(class="headline headline--" + type)=content
+  if headline === 'h3'
+    h3(class="headline headline--" + type)=content
+  if headline === 'h4'
+    h4(class="headline headline--" + type)=content
+  if headline === 'h5'
+    h5(class="headline headline--" + type)=content

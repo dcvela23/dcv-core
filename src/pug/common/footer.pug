@@ -1,0 +1,26 @@
+include ./../mixins/paragraph.pug
+include ./../mixins/button.pug
+
+
+-var data = $i18n.FOOTER
+
+footer#footer
+  div(class="footer bg-mainGradient section--pt-medium section--pb-medium section--bg-blueDarkGradient")
+    +section('small', 'small', 'small', 'small', 'transparent')
+      div(class="footer__wrapper")
+        div(class="grid")
+          div(class="grid__cell-md-2 grid__cell-xs-6")
+            div(class="footer__logo")
+              a(href=data.logo.link)
+                +image(data.logo.img, 'cover', 'center', 'fit')
+          div(class="grid__cell-md-2 grid__cell-xs-12")
+          div(class="grid__cell-md-3 grid__cell-xs-6 grid__cell-xs-0")
+            div(class="footer__links")
+              each link in data.links
+                a(href=link.link)
+                  +paragraph(link.text, 'text-medium', 'white')
+          div(class="grid__cell-md-5 grid__cell-xs-12")
+            div(class="footer__info")
+              +paragraph(data.info, 'text-medium', 'white')
+              each contact in data.contact
+                +paragraph(contact.text, 'subheadline-xSmall', 'white')

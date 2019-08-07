@@ -1,0 +1,110 @@
+.description {
+  &--main{
+    .headline{
+      margin-bottom: .5rem;
+    }
+    .text{
+      margin-bottom: 3.5rem;
+
+      @include screenLessThan(sm){
+        margin-bottom: 1.5rem;
+      }
+    }
+  }
+
+  &--section{
+    .headline{
+      margin-bottom: .5rem;
+      color: $red;
+
+      & + .list {
+        margin-top: 3rem;
+      }
+
+    }
+    > .text{
+      margin-bottom: 3.5rem;
+    }
+  }
+
+  &--feature{
+    .headline{
+      margin-bottom: 1.625rem;
+    }
+
+    > .text{
+      color: $gray;
+      margin-bottom: 2.25rem;
+    }
+    .list{
+      margin-bottom: 4.125rem;
+
+      @include screenLessThan(md) {
+        .grid--row{
+          flex-direction: column;
+
+          .list__item{
+            margin-bottom: 1rem;
+
+            &:last-child{
+              margin-bottom: 0;
+            }
+          }
+        }
+      }
+
+      @include screenLessThan(sm){
+        margin-bottom: 1.125rem;
+      }
+    }
+    .button{
+      margin-right: 1.5rem;
+      &:last-child{
+        margin-right: 0;
+      }
+    }
+    button{
+      @include screenLessThan(sm){
+        &.button--purpleMedium{
+              margin-bottom: 1rem;
+        }
+      }
+    }
+  }
+
+  &--black {
+    h2 + p {
+      color: $black;
+    }
+  }
+
+  &--white {
+    .headline, .text{
+      color: white;
+    }
+  }
+}
+
+.right{
+  picture {
+    margin-left: 0;
+  }
+  .home-features__bg{
+    left: auto;
+    right: -3rem;
+
+    img{
+      object-position: center right;
+    }
+  }
+  .list{
+    .grid{
+      justify-content: flex-end;
+
+      &--column{
+        display: inline-block;
+        width: auto;
+      }
+    }
+  }
+}

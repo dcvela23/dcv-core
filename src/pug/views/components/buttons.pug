@@ -1,0 +1,24 @@
+include ./../../mixins/section
+include ./../../mixins/button
+
+-var data = $i18n.COMPONENTS
+
+div(class="component__block")
+  div(class="component__block__title") 
+    span Buttons
+  +section('small', 'small', 'small', 'small', 'white')
+    div(class="component__block__subtitle") 
+      span purpleLarge
+    +button(data.btn, 'purpleLarge', '#')
+    div(class="component__block__subtitle") 
+      span ghostLarge
+    +button(data.btn, 'ghostLarge', '#')
+    div(class="component__block__subtitle") 
+      span purpleMedium
+    +button(data.btn, 'purpleMedium', '#')
+    div(class="component__block__subtitle") 
+      span ghostMedium
+    +button(data.btn, 'ghostMedium', '#')
+    div(class="component__block__subtitle") 
+      span ctaMedium
+    +button(data.btn, 'ctaMedium', '#')
