@@ -59,5 +59,7 @@
       "command": "gulp init-build"
     }
   },
-  "dependencies": {}
+  "dependencies": {
+    "gulp-notify": "^3.2.0"
+  }
 }

@@ -23,10 +23,14 @@ gulp.task('babel', function(){
     })]
   });
   return b.bundle()
+      .on('error', function (err) {
+        console.log(err.toString());
+
+         this.emit('end');
+      })
     .pipe(source('main.js'))
     .pipe(buffer())
     .pipe(sourcemaps.init({ loadMaps: true }))
-      .on('erros', gutil.log)
     .pipe(sourcemaps.write('./'))
     .pipe(gulp.dest(paths.APPPATH.js));
 })

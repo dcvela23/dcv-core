@@ -5,21 +5,25 @@ var _Navbar = require('./modules/Navbar.js');
 
 var _Navbar2 = _interopRequireDefault(_Navbar);
 
-var _ServicesMenu = require('./modules/ServicesMenu.js');
-
-var _ServicesMenu2 = _interopRequireDefault(_ServicesMenu);
-
 var _Banner = require('./modules/Banner.js');
 
 var _Banner2 = _interopRequireDefault(_Banner);
 
+var _svgTransitions = require('./modules/animation/svg-transitions.js');
+
+var _svgTransitions2 = _interopRequireDefault(_svgTransitions);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 (function () {
+
+  if (document.querySelectorAll('#animation--svg-transitions').length > 0) {
+    var SvgTransitionsInit = new _svgTransitions2.default(document.querySelector("#animation--svg-transitions"));
+  }
   var NavbarInit = new _Navbar2.default(document.querySelector("#nav"));
 })();
 
-},{"./modules/Banner.js":2,"./modules/Navbar.js":3,"./modules/ServicesMenu.js":4}],2:[function(require,module,exports){
+},{"./modules/Banner.js":2,"./modules/Navbar.js":3,"./modules/animation/svg-transitions.js":5}],2:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -91,7 +95,7 @@ var Banner = function () {
 
 exports.default = Banner;
 
-},{"./../utils/classes":7,"./../utils/offset":8}],3:[function(require,module,exports){
+},{"./../utils/classes":6,"./../utils/offset":7}],3:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -202,7 +206,55 @@ var Navbar = function () {
 
 exports.default = Navbar;
 
-},{"./../utils/classes":7,"./../utils/offset":8}],4:[function(require,module,exports){
+},{"./../utils/classes":6,"./../utils/offset":7}],4:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+//
+// these easing functions are based on the code of glsl-easing module.
+// https://github.com/glslify/glsl-easings
+//
+
+var ease = {
+  exponentialIn: function exponentialIn(t) {
+    return t == 0.0 ? t : Math.pow(2.0, 10.0 * (t - 1.0));
+  },
+  exponentialOut: function exponentialOut(t) {
+    return t == 1.0 ? t : 1.0 - Math.pow(2.0, -10.0 * t);
+  },
+  exponentialInOut: function exponentialInOut(t) {
+    return t == 0.0 || t == 1.0 ? t : t < 0.5 ? +0.5 * Math.pow(2.0, 20.0 * t - 10.0) : -0.5 * Math.pow(2.0, 10.0 - t * 20.0) + 1.0;
+  },
+  sineOut: function sineOut(t) {
+    var HALF_PI = 1.5707963267948966;
+    return Math.sin(t * HALF_PI);
+  },
+  circularInOut: function circularInOut(t) {
+    return t < 0.5 ? 0.5 * (1.0 - Math.sqrt(1.0 - 4.0 * t * t)) : 0.5 * (Math.sqrt((3.0 - 2.0 * t) * (2.0 * t - 1.0)) + 1.0);
+  },
+  cubicIn: function cubicIn(t) {
+    return t * t * t;
+  },
+  cubicOut: function cubicOut(t) {
+    var f = t - 1.0;
+    return f * f * f + 1.0;
+  },
+  cubicInOut: function cubicInOut(t) {
+    return t < 0.5 ? 4.0 * t * t * t : 0.5 * Math.pow(2.0 * t - 2.0, 3.0) + 1.0;
+  },
+  quadraticOut: function quadraticOut(t) {
+    return -t * (t - 2.0);
+  },
+  quarticOut: function quarticOut(t) {
+    return Math.pow(t - 1.0, 3.0) * (1.0 - t) + 1.0;
+  }
+};
+
+exports.default = ease;
+
+},{}],5:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -211,240 +263,131 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _offset = require('./../utils/offset');
+var _offset = require('./../../utils/offset');
 
-var _classes = require('./../utils/classes');
+var _classes = require('./../../utils/classes');
 
-var _checkInView = require('./../utils/checkInView');
+var _svgTransitionsEasings = require('./svg-transitions-easings');
 
-var _checkMainEl = require('./../utils/checkMainEl');
+var _svgTransitionsEasings2 = _interopRequireDefault(_svgTransitionsEasings);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var ServicesMenu = function () {
-  function ServicesMenu(el) {
-    _classCallCheck(this, ServicesMenu);
+var SvgTransitions = function () {
+  function SvgTransitions(el) {
+    _classCallCheck(this, SvgTransitions);
 
-    this.menu = { el: el };
-    this.menuEl = this.menu.el;
-    this.menuTop;
-    this.menuBottom;
-    this.menuHeight = this.menuEl.offsetHeight;
-    this.menuLinks = this.menuEl.querySelectorAll('.list__item');
-    this.initEventsDesktop();
-    this.initEventsMobile();
+    this.shapesWrapper = el.querySelector('.shape-overlays');
+    this.path = this.shapesWrapper.querySelectorAll('path');
+    this.numBeizerPoints = 2;
+    this.duration = 1300;
+    this.delayPointsArray = [];
+    this.delayPointsMax = 0;
+    this.delayPerPath = 100;
+    this.timeStart = Date.now();
+    this.isOpened = false;
+    this.isAnimating = false;
+    this.navBtns = document.querySelectorAll('.main__wrapper ul li');
+
+    this.initEvents();
   }
 
-  _createClass(ServicesMenu, [{
-    key: 'initEventsDesktop',
-    value: function initEventsDesktop() {
-      var that = this;
-      if (window.matchMedia("(min-width: 768px)").matches) {
-        if (document.querySelectorAll('#home').length > 0) {
-          that.menuHomeNavDesktop();
-        }
-        if (document.querySelectorAll('#services').length > 0) {
-          that.menuServicesNavDesktop();
-          that.menuServicesMenuDesktop();
-        }
-      }
-    }
-  }, {
-    key: 'initEventsMobile',
-    value: function initEventsMobile() {
-      var that = this;
-      if (window.matchMedia("(max-width: 767px)").matches) {
-        if (document.querySelectorAll('#home').length > 0) {
-          that.menuHomeNavMobile();
-        }
-      }
-    }
-  }, {
-    key: 'menuHomeNavDesktop',
-    value: function menuHomeNavDesktop() {
-      var descriptionsHome = document.querySelectorAll('.home-services__descriptions');
-      //
-      (0, _classes.addClass)(this.menuLinks[0], 'active');
-      (0, _classes.addClass)(descriptionsHome[0], 'active');
-      this.menuLinks.forEach(function (link) {
-        link.addEventListener("click", function () {
-          var activeLink = document.querySelector('.list__item.active');
-          var activeDescription = document.querySelector('.home-services__descriptions.active');
-          var sectionToData = this.querySelector('div').getAttribute('data-item');
-          var sectionTo = document.querySelector('.home-services__descriptions[data-description=' + sectionToData + ']');
-          (0, _classes.removeClass)(activeLink, 'active');
-          (0, _classes.removeClass)(activeDescription, 'active');
-          (0, _classes.addClass)(this, 'active');
-          (0, _classes.addClass)(sectionTo, 'active');
-        });
-      });
-    }
-  }, {
-    key: 'menuHomeNavMobile',
-    value: function menuHomeNavMobile() {
-      this.menuLinks.forEach(function (link) {
-        link.addEventListener("click", function () {
-          var sectionToData = this.querySelector('div').getAttribute('data-item');
-          window.location.href = "/services.html#" + sectionToData;
-        });
-      });
-    }
-  }, {
-    key: 'menuServicesMenuDesktop',
-    value: function menuServicesMenuDesktop() {
-      var that = this;
-      //
-      var sections = document.querySelectorAll('.services-services__description');
-      //
-      var firstSection = sections[0];
-      var firstSectionTop = (0, _offset.offset)(firstSection).top;
-      //
-      var lastSection = sections[sections.length - 1];
-      var lastSectionHeight = lastSection.offsetHeight;
-      var lastSectionTop = (0, _offset.offset)(lastSection).top;
-      var lastSectionBottom = lastSectionHeight + lastSectionTop;
-      //
-      document.addEventListener("scroll", function () {
+  _createClass(SvgTransitions, [{
+    key: 'initEvents',
+    value: function initEvents() {
+      var _this = this;
 
-        var windowTop = document.documentElement.scrollTop;
-        //
-        that.menuTop = (0, _offset.offset)(that.menuEl).top;
-        that.menuBottom = that.menuHeight + that.menuTop;
-        //aside Menu position
-        if (windowTop + 120 >= firstSectionTop - 150 && windowTop + 120 + that.menuHeight < lastSectionBottom) {
-          (0, _classes.addClass)(that.menuEl, 'fixed');
-          (0, _classes.removeClass)(that.menuEl, 'bottom');
-        } else if (windowTop + 115 + that.menuHeight >= lastSectionBottom) {
-          (0, _classes.addClass)(that.menuEl, 'bottom');
-          (0, _classes.removeClass)(that.menuEl, 'fixed');
-        } else if (windowTop + 115 < firstSectionTop) {
-          (0, _classes.removeClass)(that.menuEl, 'fixed');
-        }
-        //check description active
-        var sectionsInView = [];
-        sections.forEach(function (section) {
-          if ((0, _checkInView.checkInView)(section)) {
-            sectionsInView.push(section);
-          }
+      this.navBtns.forEach(function (el) {
+        el.addEventListener('click', function () {
+          _this.toggle();
         });
-        if (sectionsInView.length > 0) {
-          var mainSection = (0, _checkMainEl.checkMainEl)(sectionsInView);
-          if (mainSection === undefined) {
-            return;
-          }
-          var mainSectionId = mainSection.getAttribute("data-description");
-          var menuItemActive = document.querySelector('.list__item div[data-item=' + mainSectionId + ']').parentNode;
-          that.menuLinks.forEach(function (item) {
-            (0, _classes.removeClass)(item, 'active');
-          });
-          (0, _classes.addClass)(menuItemActive, 'active');
-        }
       });
     }
   }, {
-    key: 'menuServicesNavDesktop',
-    value: function menuServicesNavDesktop() {
-      var descriptionsServices = document.querySelectorAll('.services-services__description');
-      //
-      this.menuLinks.forEach(function (link) {
-        link.addEventListener("click", function () {
-          var sectionToData = this.querySelector('div').getAttribute('data-item');
-          var sectionTo = document.querySelector('.services-services__description[data-description=' + sectionToData + ']');
-          window.scrollTo({
-            top: (0, _offset.offset)(sectionTo).top,
-            left: 0,
-            behavior: 'smooth'
-          });
+    key: 'toggle',
+    value: function toggle() {
+      this.isAnimating = true;
+      for (var i = 0; i < this.numBeizerPoints; i++) {
+        this.delayPointsArray[i] = 0;
+      }
+      if (this.isOpened === false) {
+        this.open();
+      } else {
+        this.close();
+      }
+    }
+  }, {
+    key: 'open',
+    value: function open() {
+      this.isOpened = true;
+      this.timeStart = Date.now();
+      this.renderLoop();
+    }
+  }, {
+    key: 'close',
+    value: function close() {
+      this.isOpened = false;
+      this.timeStart = Date.now();
+      this.renderLoop();
+    }
+  }, {
+    key: 'updatePath',
+    value: function updatePath(time) {
+      var points = [];
+      for (var i = 0; i < this.numBeizerPoints; i++) {
+        var thisEase = this.isOpened ? i == 1 ? _svgTransitionsEasings2.default.cubicOut : _svgTransitionsEasings2.default.cubicInOut : i == 1 ? _svgTransitionsEasings2.default.cubicInOut : _svgTransitionsEasings2.default.cubicOut;
+        points[i] = thisEase(Math.min(Math.max(time - this.delayPointsArray[i], 0) / this.duration, 1)) * 100;
+      }
+
+      var str = '';
+      str += this.isOpened ? 'M 0 0 V ' + points[0] + ' ' : 'M 0 ' + points[0] + ' ';
+
+      for (var i = 0; i < this.numBeizerPoints - 1; i++) {
+        var p = (i + 1) / (this.numBeizerPoints - 1) * 100;
+        var cp = p - 1 / (this.numBeizerPoints - 1) * 100 / 2;
+        str += 'C ' + cp + ' ' + points[i] + ' ' + cp + ' ' + points[i + 1] + ' ' + p + ' ' + points[i + 1] + ' ';
+      }
+      str += this.isOpened ? 'V 0 H 0' : 'V 100 H 0';
+
+      return str;
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      if (this.isOpened) {
+        for (var i = 0; i < this.path.length; i++) {
+          this.path[i].setAttribute('d', this.updatePath(Date.now() - (this.timeStart + this.delayPerPath * i)));
+        }
+      } else {
+        for (var i = 0; i < this.path.length; i++) {
+          this.path[i].setAttribute('d', this.updatePath(Date.now() - (this.timeStart + this.delayPerPath * (this.path.length - i - 1))));
+        }
+      }
+    }
+  }, {
+    key: 'renderLoop',
+    value: function renderLoop() {
+      var _this2 = this;
+
+      this.render();
+      if (Date.now() - this.timeStart < this.duration + this.delayPerPath * (this.path.length - 1) + this.delayPointsMax) {
+        requestAnimationFrame(function () {
+          _this2.renderLoop();
         });
-      });
+      } else {
+        this.isAnimating = false;
+      }
     }
   }]);
 
-  return ServicesMenu;
+  return SvgTransitions;
 }();
 
-exports.default = ServicesMenu;
+exports.default = SvgTransitions;
 
-},{"./../utils/checkInView":5,"./../utils/checkMainEl":6,"./../utils/classes":7,"./../utils/offset":8}],5:[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.checkInView = undefined;
-
-var _offset = require('./offset.js');
-
-var checkInView = exports.checkInView = function checkInView(el) {
-  // console.log(document.documentElement.scrollTop || document.body.scrollTop)
-  var windowHeight = window.innerHeight;
-  var windowTop = document.documentElement.scrollTop;
-  var windowBottom = windowTop + windowHeight;
-  //
-  var elHeight = el.offsetHeight;
-  var elTop = (0, _offset.offset)(el).top;
-  var elBottom = elHeight + elTop;
-  //
-  if (elTop <= windowBottom && elBottom >= windowTop) {
-    return true;
-  }
-};
-
-},{"./offset.js":8}],6:[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.checkMainEl = undefined;
-
-var _offset = require('./offset.js');
-
-var checkMainEl = exports.checkMainEl = function checkMainEl(arrayEl) {
-  var arrayObjEl = [];
-  //
-  var windowHeight = window.innerHeight;
-  var windowTop = document.documentElement.scrollTop;
-  var windowBottom = windowTop + windowHeight;
-  //
-  arrayEl.forEach(function (el) {
-    var objEl = { el: '' };
-    //
-    var elHeight = el.offsetHeight;
-    var elTop = (0, _offset.offset)(el).top;
-    var elBottom = elHeight + elTop;
-    //
-    var pxInView = void 0;
-    //
-    if (elTop < windowTop && elBottom > windowBottom) {
-      pxInView = windowHeight;
-    } else if (elTop > windowTop && elBottom < windowBottom) {
-      pxInView = elHeight;
-    } else if (elTop < windowTop) {
-      pxInView = elBottom - windowTop;
-    } else if (elBottom > windowBottom) {
-      pxInView = windowBottom - elTop;
-    }
-    //
-    var percentInView = pxInView * 100 / windowHeight;
-    objEl.el = el;
-    objEl.percentInView = percentInView;
-    arrayObjEl.push(objEl);
-  });
-  //
-  var higherPercent = Math.max.apply(Math, arrayObjEl.map(function (obj) {
-    return obj.percentInView;
-  }));
-  var mainElInView = arrayObjEl.find(function (obj) {
-    return obj.percentInView === higherPercent;
-  });
-  //
-  if (mainElInView !== undefined) {
-    return mainElInView.el;
-  }
-};
-
-},{"./offset.js":8}],7:[function(require,module,exports){
+},{"./../../utils/classes":6,"./../../utils/offset":7,"./svg-transitions-easings":4}],6:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -486,7 +429,7 @@ function toggleClass(el, className) {
 	}
 }
 
-},{}],8:[function(require,module,exports){
+},{}],7:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {

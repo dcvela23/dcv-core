@@ -49,66 +49,31 @@
     </nav>
     <div class="main">
       <div class="main__wrapper">
-        <!--check breakpoints vars-->
-        <section class="home-hero" id="home-hero">
-                  <div class="pd pd--t-large pd--r-zero pd--b-zero pd--l-zero">
-                            <div class="section bg-transparent">
-                                      <div class="pd pd--t-large pd--r-small pd--b-large pd--l-small">
-                                        <div class="section__wrapper">
-                                          <div class="grid">
-                                            <div class="grid__cell grid__cell-md-6 grid__cell-sm-12">
-                                                      <div class="description description--main description--black left">
-                                                                <h1 class="headline headline--headline-large">Dcv playground</h1>
-                                                        <!---->
-                                                                <p class="text text--text-large">The best is always yet to come</p>
-                                                        <!---->
-                                                        <!---->
-                                                        <!---->
-                                                      </div>
-                                            </div>
-                                          </div>
-                                        </div>
-                                      </div>
-                            </div>
-                  </div>
+        <section id="animation--svg-transitions">
+          <svg class="shape-overlays" viewbox="0 0 100 100" preserveAspectRatio="none">
+            <path class="shape-overlays__path"></path>
+            <path class="shape-overlays__path"></path>
+            <path class="shape-overlays__path"></path>
+          </svg>
+          <div class="pd pd--t-large">
+            <div class="section bg-transparent pd pd--t-large pd--r-small pd--b-large pd--l-small">
+              <div class="grid">
+                <div class="grid__cell grid__cell-md-6 grid__cell-sm-12">
+                  <ul>
+                    <li data-link="About the team">
+                      <p>About</p>
+                    </li>
+                    <li data-link="Give us a call">
+                      <p>Contact</p>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
         </section>
       </div>
     </div>
-    <footer id="footer">
-      <div class="footer bg-mainGradient section--pt-medium section--pb-medium section--bg-blueDarkGradient">
-                <div class="section bg-transparent">
-                          <div class="pd pd--t-small pd--r-small pd--b-small pd--l-small">
-                            <div class="section__wrapper">
-                              <div class="footer__wrapper">
-                                <div class="grid">
-                                  <div class="grid__cell-md-2 grid__cell-xs-6">
-                                    <div class="footer__logo"><a href="/">
-                                                <picture class="image image--cover image--center image--fit">
-                                                  <source class="image__img" srcset="./public/images/dcv_logo.svg 3039w, ./public/images/dcv_logo.svg 6078w" media="(min-width: 1499px)">
-                                                  <source class="image__img" srcset="./public/images/dcv_logo.svg 1499w, ./public/images/dcv_logo.svg 2998w" media="(min-width: 1023px)">
-                                                  <source class="image__img" srcset="./public/images/dcv_logo.svg 1023w, ./public/images/dcv_logo.svg 2046w" media="(min-width: 767px)"><img class="image__img" srcset="./public/images/dcv_logo.svg 767w, ./public/images/dcv_logo.svg 1534w" alt="Lorem ipsum">
-                                                </picture></a></div>
-                                  </div>
-                                  <div class="grid__cell-md-2 grid__cell-xs-12"></div>
-                                  <div class="grid__cell-md-3 grid__cell-xs-6 grid__cell-xs-0">
-                                    <div class="footer__links"><a href="/">
-                                            <p class="text text--text-medium">Animation</p></a>
-                                    </div>
-                                  </div>
-                                  <div class="grid__cell-md-5 grid__cell-xs-12">
-                                    <div class="footer__info">
-                                          <p class="text text--text-medium">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In blandit, neque et sodales viverra, lectus erat elementum felis, et imperdiet ligula neque eget est.</p>
-                                          <p class="text text--subheadline-xSmall">Lorem ipsum dolor sit amet</p>
-                                          <p class="text text--subheadline-xSmall">Lorem ipsum dolor sit amet</p>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                </div>
-      </div>
-    </footer>
     <!-- build:js(./app/main.js) ./js/main.js-->
     <script src="./../js/main.js"></script>
     <!-- endbuild-->

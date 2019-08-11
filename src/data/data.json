@@ -66,14 +66,14 @@
   "HOME_HERO": {
     "bg": {
       "img": {
-        "urlMobile" : "./public/images/home_hero_bg.svg",
-        "urlMobile2x" : "./public/images/home_hero_bg.svg",
-        "urlTablet" : "./public/images/home_hero_bg.svg",
-        "urlTablet2x" : "./public/images/home_hero_bg.svg",
-        "urlDesktop" : "./public/images/home_hero_bg.svg",
-        "urlDesktop2x" : "./public/images/home_hero_bg.svg",
-        "urlDesktopLarge" : "./public/images/home_hero_bg.svg",
-        "urlDesktopLarge2x" : "./public/images/home_hero_bg.svg",
+        "urlMobile" : "./public/images/home_hero.jpg",
+        "urlMobile2x" : "./public/images/home_hero.jpg",
+        "urlTablet" : "./public/images/home_hero.jpg",
+        "urlTablet2x" : "./public/images/home_hero.jpg",
+        "urlDesktop" : "./public/images/home_hero.jpg",
+        "urlDesktop2x" : "./public/images/home_hero.jpg",
+        "urlDesktopLarge" : "./public/images/home_hero.jpg",
+        "urlDesktopLarge2x" : "./public/images/home_hero.jpg",
         "alt": "Lorem ipsum"
       }
     },
@@ -82,7 +82,20 @@
       "text": "The best is always yet to come"
     }
   },
-
+  "ANIMATION": {
+    "SVG_TRANSITIONS": {
+      "links": [
+        {
+          "text": "About",
+          "data": "About the team"
+        },
+        {
+          "text": "Contact",
+          "data": "Give us a call"
+        }
+      ]
+    }
+  },
   "COMPONENTS": {
     "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In blandit, neque et sodales viverra, lectus erat elementum felis, et imperdiet ligula neque eget est.",
     "btn": {

@@ -1,0 +1,18 @@
+include ./../../../mixins/description
+
+-var data = $i18n.ANIMATION.SVG_TRANSITIONS
+
+section#animation--svg-transitions
+  svg.shape-overlays(viewbox='0 0 100 100' preserveAspectRatio='none')
+    path.shape-overlays__path
+    path.shape-overlays__path
+    path.shape-overlays__path
+  .pd.pd--t-large
+    .section.bg-transparent.pd.pd--t-large.pd--r-small.pd--b-large.pd--l-small
+      .grid
+        .grid__cell.grid__cell-md-6.grid__cell-sm-12
+          ul
+            for link in data.links
+              li(data-link=link.data)
+                p= link.text
+  

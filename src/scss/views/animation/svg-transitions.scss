@@ -1,0 +1,38 @@
+#animation--svg-transitions {
+  height: 100vh;
+
+  .shape-overlays {
+    transform: rotate(180deg);
+    z-index: 0;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    path:nth-child(1) {
+      fill: #c5f0a4;
+    }
+
+    path:nth-child(2) {
+      fill: #35b0ab;
+    }
+
+    path:nth-child(3) {
+      fill: #226b80;
+    }
+  }
+
+  .pd.pd--t-large {
+    position: relative;
+    z-index: 11;
+
+    ul li {
+      cursor: pointer;
+      
+      & + li {
+        margin-top: 6rem
+      }
+    }
+  }
+}

@@ -96,7 +96,7 @@ text, area, input, button, label {
   background-color: #F0DA2C; }
 
 *.bg-mainGradient {
-  background-image: linear-gradient(-223deg, #F3474F 2%, #E54472 52%); }
+  background-image: linear-gradient(to right, #61045F, #AA076B); }
 
 .grid {
   display: flex;
@@ -842,6 +842,30 @@ body {
   @media (max-width: 1023px) {
     .home-hero {
       padding-top: 5rem; } }
+
+#animation--svg-transitions {
+  height: 100vh; }
+  #animation--svg-transitions .shape-overlays {
+    transform: rotate(180deg);
+    z-index: 0;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0; }
+    #animation--svg-transitions .shape-overlays path:nth-child(1) {
+      fill: #c5f0a4; }
+    #animation--svg-transitions .shape-overlays path:nth-child(2) {
+      fill: #35b0ab; }
+    #animation--svg-transitions .shape-overlays path:nth-child(3) {
+      fill: #226b80; }
+  #animation--svg-transitions .pd.pd--t-large {
+    position: relative;
+    z-index: 11; }
+    #animation--svg-transitions .pd.pd--t-large ul li {
+      cursor: pointer; }
+      #animation--svg-transitions .pd.pd--t-large ul li + li {
+        margin-top: 6rem; }
 
 [class$="--headline-large"] {
   font-family: "Rokkitt", serif;
