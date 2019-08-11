@@ -5,13 +5,13 @@ var _Navbar = require('./modules/Navbar.js');
 
 var _Navbar2 = _interopRequireDefault(_Navbar);
 
-var _Banner = require('./modules/Banner.js');
-
-var _Banner2 = _interopRequireDefault(_Banner);
-
 var _svgTransitions = require('./modules/animation/svg-transitions.js');
 
 var _svgTransitions2 = _interopRequireDefault(_svgTransitions);
+
+var _smoothScroll = require('./modules/animation/smooth-scroll.js');
+
+var _smoothScroll2 = _interopRequireDefault(_smoothScroll);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -20,82 +20,13 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
   if (document.querySelectorAll('#animation--svg-transitions').length > 0) {
     var SvgTransitionsInit = new _svgTransitions2.default(document.querySelector("#animation--svg-transitions"));
   }
+  if (document.querySelectorAll('#animation--smooth-scroll').length > 0) {
+    var SmoothScrollInit = new _smoothScroll2.default(document.querySelector("#animation--smooth-scroll"));
+  }
   var NavbarInit = new _Navbar2.default(document.querySelector("#nav"));
 })();
 
-},{"./modules/Banner.js":2,"./modules/Navbar.js":3,"./modules/animation/svg-transitions.js":5}],2:[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _offset = require('./../utils/offset');
-
-var _classes = require('./../utils/classes');
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var Banner = function () {
-  function Banner(el) {
-    _classCallCheck(this, Banner);
-
-    this.banner = { el: el };
-    this.bannerEl = this.banner.el;
-    this.bannerTop = (0, _offset.offset)(this.bannerEl).top;
-    this.bannerHeight = this.bannerEl.offsetHeight;
-    this.bannerBottom = this.bannerTop + this.bannerHeight;
-    this.bannerWrapper = this.bannerEl.querySelector('.banner__wrapper');
-    this.initEvents();
-  }
-
-  _createClass(Banner, [{
-    key: 'initEvents',
-    value: function initEvents() {
-      var that = this;
-      document.addEventListener("scroll", function () {
-        that.addSticky();
-      });
-    }
-  }, {
-    key: 'addSticky',
-    value: function addSticky() {
-      var windowHeight = window.innerHeight;
-      var windowTop = document.documentElement.scrollTop;
-      var windowBottom = windowTop + windowHeight;
-      var navbarRight = document.querySelector('.navbar__right');
-      var navbarRight = document.querySelector('.navbar__right');
-      var navbarTop = (0, _offset.offset)(document.querySelector('#nav')).top;
-
-      if (navbarTop > 500 && windowBottom - this.bannerWrapper.offsetHeight < this.bannerBottom) {
-        if (!(0, _classes.hasClass)(this.bannerWrapper, 'sticky')) {
-          (0, _classes.addClass)(this.bannerWrapper, 'sticky');
-          (0, _classes.removeClass)(this.bannerWrapper, 'bottom');
-          //
-          if (window.matchMedia("(min-width: 1024px)").matches) {
-            navbarRight.style.transform = 'translateX(245px)';
-          }
-        }
-      } else if (windowBottom - this.bannerWrapper.offsetHeight > this.bannerBottom) {
-        (0, _classes.removeClass)(this.bannerWrapper, 'sticky');
-        (0, _classes.addClass)(this.bannerWrapper, 'bottom');
-      } else {
-        (0, _classes.removeClass)(this.bannerWrapper, 'sticky');
-        if (window.matchMedia("(min-width: 1024px)").matches) {
-          navbarRight.style.transform = 'translateX(0px)';
-        }
-      }
-    }
-  }]);
-
-  return Banner;
-}();
-
-exports.default = Banner;
-
-},{"./../utils/classes":6,"./../utils/offset":7}],3:[function(require,module,exports){
+},{"./modules/Navbar.js":2,"./modules/animation/smooth-scroll.js":3,"./modules/animation/svg-transitions.js":5}],2:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -206,7 +137,163 @@ var Navbar = function () {
 
 exports.default = Navbar;
 
-},{"./../utils/classes":6,"./../utils/offset":7}],4:[function(require,module,exports){
+},{"./../utils/classes":6,"./../utils/offset":7}],3:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _offset = require('./../../utils/offset');
+
+var _classes = require('./../../utils/classes');
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+// helpers
+
+var MathUtils = {
+  // map number x from range [a, b] to [c, d]
+  map: function map(x, a, b, c, d) {
+    return (x - a) * (d - c) / (b - a) + c;
+  },
+  // linear interpolation
+  lerp: function lerp(a, b, n) {
+    return (1 - n) * a + n * b;
+  }
+};
+
+var body = document.body;
+
+// window size and recalculate on resize
+var winsize = void 0;
+var calcWinsize = function calcWinsize() {
+  return winsize = { width: window.innerWidth, height: window.innerHeigth };
+};
+calcWinsize();
+
+window.addEventListener('resize', calcWinsize);
+
+// scrollY track
+var docScroll = void 0;
+var getYScroll = function getYScroll() {
+  return docScroll = window.pageYOffset || document.documentElement.scrollTop;
+};
+
+getYScroll();
+window.addEventListener('scroll', getYScroll);
+
+var SmoothScroll = function () {
+  // TODO: only in desktop CHROME AND SAFARI
+  // TODO: preloadIMAGES in order to calculate the HEIGHT
+
+  function SmoothScroll(el) {
+    _classCallCheck(this, SmoothScroll);
+
+    this.DOM = { main: document.querySelector('.main') };
+    this.DOM.scrollable = this.DOM.main.querySelector('div[data-scroll]');
+
+    this.renderedStyles = {
+      translationY: {
+        // interpolated value
+        //we interpolate between the previous and current value to achieve the smooth scrolling effect
+        previous: 0,
+        // current value
+        current: 0,
+        // amount to interpolate
+        ease: 0.05,
+        // current value setter
+        setValue: function setValue() {
+          return docScroll;
+        }
+      }
+    };
+    getYScroll();
+    this.initEvents();
+  }
+
+  _createClass(SmoothScroll, [{
+    key: 'checkValues',
+    value: function checkValues() {
+      //console.log(this.renderedStyles.translationY.setValue())
+    }
+  }, {
+    key: 'initEvents',
+    value: function initEvents() {
+      var _this = this;
+
+      this.setBodySize();
+      this.updateStyles(); // set the initial values and init layout
+      this.setMainStyles(); // set the fixes values to main wrapper
+
+      window.addEventListener('scroll', function () {
+        return _this.checkValues();
+      });
+      window.addEventListener('resize', function () {
+        return _this.setBodySize();
+      });
+
+      requestAnimationFrame(function () {
+        return _this.render();
+      });
+    }
+  }, {
+    key: 'setBodySize',
+    value: function setBodySize() {
+      // set the heigh of the body in order to keep the scrollbar on the page
+      body.style.height = this.DOM.scrollable.scrollHeight + 'px';
+    }
+  }, {
+    key: 'updateStyles',
+    value: function updateStyles() {
+      // sets the initial value (no interpolation) - translate the scroll value
+      for (var key in this.renderedStyles) {
+        this.renderedStyles[key].current = this.renderedStyles[key].previous = this.renderedStyles[key].setValue();
+      }
+      // translate the scrollable element
+      this.translateScrollable();
+    }
+  }, {
+    key: 'translateScrollable',
+    value: function translateScrollable() {
+      // translates the scrollable element
+      this.DOM.scrollable.style.transform = 'translate3d(0,' + -1 * this.renderedStyles.translationY.previous + 'px,0)';
+    }
+  }, {
+    key: 'setMainStyles',
+    value: function setMainStyles() {
+      this.DOM.main.style.position = 'fixed';
+      this.DOM.main.style.width = this.DOM.main.style.height = '100%';
+      this.DOM.main.style.top = this.DOM.main.style.left = 0;
+      this.DOM.main.style.overflow = 'hidden';
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
+
+      for (var key in this.renderedStyles) {
+        this.renderedStyles[key].current = this.renderedStyles[key].setValue();
+        this.renderedStyles[key].previous = MathUtils.lerp(this.renderedStyles[key].previous, this.renderedStyles[key].current, this.renderedStyles[key].ease);
+      }
+
+      this.translateScrollable();
+
+      // loop..
+      requestAnimationFrame(function () {
+        return _this2.render();
+      });
+    }
+  }]);
+
+  return SmoothScroll;
+}();
+
+exports.default = SmoothScroll;
+
+},{"./../../utils/classes":6,"./../../utils/offset":7}],4:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {

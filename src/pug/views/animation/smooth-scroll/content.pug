@@ -1,0 +1,10 @@
+include ./../../../mixins/description
+
+-var data = $i18n.ANIMATION.SMOOTH_SCROLL
+
+section#animation--smooth-scroll
+  .pd.pd--t-large
+    .section.bg-transparent.pd.pd--t-large.pd--r-small.pd--b-large.pd--l-small
+      each paragraph in [1, 2, 3, 4, 5]
+        p.headline-large.mg.mg--b-5= data.title
+        p.text-large.mg.mg--b-5= data.text

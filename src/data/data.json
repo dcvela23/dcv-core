@@ -94,6 +94,10 @@
           "data": "Give us a call"
         }
       ]
+    },
+    "SMOOTH_SCROLL": {
+      "title": "Lorem ipsum dolor sit amet,",
+      "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In blandit, neque et sodales viverra, lectus erat elementum felis, et imperdiet ligula neque eget est.Lorem ipsum dolor sit amet, consectetur adipiscing elit. In blandit, neque et sodales viverra, lectus erat elementum felis, et imperdiet ligula neque eget est.Lorem ipsum dolor sit amet, consectetur adipiscing elit. In blandit, neque et sodales viverra, lectus erat elementum felis, et imperdiet ligula neque eget est.Lorem ipsum dolor sit amet, consectetur adipiscing elit. In blandit, neque et sodales viverra, lectus erat elementum felis, et imperdiet ligula neque eget est.Lorem ipsum dolor sit amet, consectetur adipiscing elit. In blandit, neque et sodales viverra, lectus erat elementum felis, et imperdiet ligula neque eget est."
     }
   },
   "COMPONENTS": {

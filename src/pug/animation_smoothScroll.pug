@@ -7,9 +7,9 @@ html(lang='en', dir='ltr')
   body(id="home")
     include ./common/navbar
     .main
-      .main__wrapper
-        include ./views/home/hero
-    include ./common/footer
+      div(data-scroll)
+        .main__wrapper
+          include ./views/animation/smooth-scroll/content
     include ./common/scripts
 
       
