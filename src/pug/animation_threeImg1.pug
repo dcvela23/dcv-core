@@ -1,0 +1,16 @@
+-var data =  $i18n
+
+doctype html
+html(lang='en', dir='ltr')
+  head
+    include ./common/head
+  body(id="home")
+    include ./common/navbar
+    .main
+      div(data-scroll)
+        .main__wrapper
+          include ./views/animation/three-img1/content
+    include ./common/scripts
+
+      
+    

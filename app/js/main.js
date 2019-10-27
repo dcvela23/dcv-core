@@ -13,6 +13,10 @@ var _smoothScroll = require('./modules/animation/smooth-scroll.js');
 
 var _smoothScroll2 = _interopRequireDefault(_smoothScroll);
 
+var _textTrail = require('./modules/animation/text-trail.js');
+
+var _textTrail2 = _interopRequireDefault(_textTrail);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 (function () {
@@ -23,10 +27,15 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
   if (document.querySelectorAll('#animation--smooth-scroll').length > 0) {
     var SmoothScrollInit = new _smoothScroll2.default(document.querySelector("#animation--smooth-scroll"));
   }
+
+  if (document.querySelectorAll('#animation--text-trail').length > 0) {
+    var TexTrailInit = new _textTrail2.default(document.querySelector("#animation--text-trail"));
+  }
+
   var NavbarInit = new _Navbar2.default(document.querySelector("#nav"));
 })();
 
-},{"./modules/Navbar.js":2,"./modules/animation/smooth-scroll.js":3,"./modules/animation/svg-transitions.js":5}],2:[function(require,module,exports){
+},{"./modules/Navbar.js":2,"./modules/animation/smooth-scroll.js":3,"./modules/animation/svg-transitions.js":5,"./modules/animation/text-trail.js":6}],2:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -137,7 +146,7 @@ var Navbar = function () {
 
 exports.default = Navbar;
 
-},{"./../utils/classes":6,"./../utils/offset":7}],3:[function(require,module,exports){
+},{"./../utils/classes":7,"./../utils/offset":8}],3:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -293,7 +302,7 @@ var SmoothScroll = function () {
 
 exports.default = SmoothScroll;
 
-},{"./../../utils/classes":6,"./../../utils/offset":7}],4:[function(require,module,exports){
+},{"./../../utils/classes":7,"./../../utils/offset":8}],4:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -474,7 +483,41 @@ var SvgTransitions = function () {
 
 exports.default = SvgTransitions;
 
-},{"./../../utils/classes":6,"./../../utils/offset":7,"./svg-transitions-easings":4}],6:[function(require,module,exports){
+},{"./../../utils/classes":7,"./../../utils/offset":8,"./svg-transitions-easings":4}],6:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _offset = require('./../../utils/offset');
+
+var _classes = require('./../../utils/classes');
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var TexTrail = function () {
+  function TexTrail(el) {
+    _classCallCheck(this, TexTrail);
+
+    console.log('asd');
+
+    this.initEvents();
+  }
+
+  _createClass(TexTrail, [{
+    key: 'initEvents',
+    value: function initEvents() {}
+  }]);
+
+  return TexTrail;
+}();
+
+exports.default = TexTrail;
+
+},{"./../../utils/classes":7,"./../../utils/offset":8}],7:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -516,7 +559,7 @@ function toggleClass(el, className) {
 	}
 }
 
-},{}],7:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {

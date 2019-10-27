@@ -17,5 +17,10 @@ gulp.task('pug', function(){
       },
         pretty: true
     }))
+    .on('error', function (err) {
+      console.log(err.toString());
+
+       this.emit('end');
+    })
     .pipe(gulp.dest(paths.APPPATH.root))
 })
