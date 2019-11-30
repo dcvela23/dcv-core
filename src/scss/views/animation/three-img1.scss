@@ -1,0 +1,11 @@
+#animation--three-img1 {
+  .image {
+    display: none;
+  }
+
+  .title {
+    + .title {
+      margin-top: 10vh;
+    }
+  }
+}

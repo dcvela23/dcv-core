@@ -110,6 +110,8 @@ text, area, input, button, label {
     padding-right: 0; }
   .grid--full-height {
     height: 100%; }
+  .grid--viewport {
+    height: 100vh; }
   .grid--ai-top {
     align-items: flex-start; }
   .grid--ai-middle {
@@ -866,6 +868,12 @@ body {
       cursor: pointer; }
       #animation--svg-transitions .pd.pd--t-large ul li + li {
         margin-top: 6rem; }
+
+#animation--three-img1 .image {
+  display: none; }
+
+#animation--three-img1 .title + .title {
+  margin-top: 10vh; }
 
 [class$="--headline-large"] {
   font-family: "Rokkitt", serif;

@@ -1,7 +1,23 @@
 include ./../../../mixins/description
+include ./../../../mixins/image
 
--var data = $i18n.ANIMATION.TEXT_TRAIl
+-var data = $i18n.ANIMATION.THREE_IMG1
 
 section#animation--three-img1
-  .pd.pd--t-large
-    .section.bg-transparent.pd.pd--t-large.pd--r-small.pd--b-large.pd--l-small
+  .section
+    .grid.grid--viewport.grid--ai-middle.grid--jc-middle.grid--column
+      .title
+        p.black.headline-large= data.title1
+        +image(data.img1, 'cover', 'center', 'fit')
+      .title
+        p.black.headline-large= data.title2
+        +image(data.img2, 'cover', 'center', 'fit')
+      .title
+        p.black.headline-large= data.title3
+        +image(data.img3, 'cover', 'center', 'fit')
+      .title
+        p.black.headline-large= data.title4
+        +image(data.img4, 'cover', 'center', 'fit')
+      .title
+        p.black.headline-large= data.title5
+        +image(data.img4, 'cover', 'center', 'fit')

@@ -99,8 +99,67 @@
       "title": "Lorem ipsum dolor sit amet,",
       "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In blandit, neque et sodales viverra, lectus erat elementum felis, et imperdiet ligula neque eget est.Lorem ipsum dolor sit amet, consectetur adipiscing elit. In blandit, neque et sodales viverra, lectus erat elementum felis, et imperdiet ligula neque eget est.Lorem ipsum dolor sit amet, consectetur adipiscing elit. In blandit, neque et sodales viverra, lectus erat elementum felis, et imperdiet ligula neque eget est.Lorem ipsum dolor sit amet, consectetur adipiscing elit. In blandit, neque et sodales viverra, lectus erat elementum felis, et imperdiet ligula neque eget est.Lorem ipsum dolor sit amet, consectetur adipiscing elit. In blandit, neque et sodales viverra, lectus erat elementum felis, et imperdiet ligula neque eget est."
     },
-    "TEXT_TRAIl": {
-
+    "THREE_IMG1": {
+      "title1": "Spaceship",
+      "img1": {
+        "urlMobile" : "./public/images/img-1.jpg",
+        "urlMobile2x" : "./public/images/img-1.jpg",
+        "urlTablet" : "./public/images/img-1.jpg",
+        "urlTablet2x" : "./public/images/img-1.jpg",
+        "urlDesktop" : "./public/images/img-1.jpg",
+        "urlDesktop2x" : "./public/images/img-1.jpg",
+        "urlDesktopLarge" : "./public/images/img-1.jpg",
+        "urlDesktopLarge2x" : "./public/images/img-1.jpg",
+        "alt": "Lorem ipsum"
+      },
+      "title2": "The Lion",
+      "img2": {
+        "urlMobile" : "./public/images/img-2.jpg",
+        "urlMobile2x" : "./public/images/img-2.jpg",
+        "urlTablet" : "./public/images/img-2.jpg",
+        "urlTablet2x" : "./public/images/img-2.jpg",
+        "urlDesktop" : "./public/images/img-2.jpg",
+        "urlDesktop2x" : "./public/images/img-2.jpg",
+        "urlDesktopLarge" : "./public/images/img-2.jpg",
+        "urlDesktopLarge2x" : "./public/images/img-2.jpg",
+        "alt": "Lorem ipsum"
+      },
+      "title3": "Dreamland",
+      "img3": {
+        "urlMobile" : "./public/images/img-3.jpg",
+        "urlMobile2x" : "./public/images/img-3.jpg",
+        "urlTablet" : "./public/images/img-3.jpg",
+        "urlTablet2x" : "./public/images/img-3.jpg",
+        "urlDesktop" : "./public/images/img-3.jpg",
+        "urlDesktop2x" : "./public/images/img-3.jpg",
+        "urlDesktopLarge" : "./public/images/img-3.jpg",
+        "urlDesktopLarge2x" : "./public/images/img-3.jpg",
+        "alt": "Lorem ipsum"
+      },
+      "title4": "Forecast",
+      "img4": {
+        "urlMobile" : "./public/images/img-4.jpg",
+        "urlMobile2x" : "./public/images/img-4.jpg",
+        "urlTablet" : "./public/images/img-4.jpg",
+        "urlTablet2x" : "./public/images/img-4.jpg",
+        "urlDesktop" : "./public/images/img-4.jpg",
+        "urlDesktop2x" : "./public/images/img-4.jpg",
+        "urlDesktopLarge" : "./public/images/img-4.jpg",
+        "urlDesktopLarge2x" : "./public/images/img-4.jpg",
+        "alt": "Lorem ipsum"
+      },
+      "title5": "Mermaid",
+      "img5": {
+        "urlMobile" : "./public/images/img-5.jpg",
+        "urlMobile2x" : "./public/images/img-5.jpg",
+        "urlTablet" : "./public/images/img-5.jpg",
+        "urlTablet2x" : "./public/images/img-5.jpg",
+        "urlDesktop" : "./public/images/img-5.jpg",
+        "urlDesktop2x" : "./public/images/img-5.jpg",
+        "urlDesktopLarge" : "./public/images/img-5.jpg",
+        "urlDesktopLarge2x" : "./public/images/img-5.jpg",
+        "alt": "Lorem ipsum"
+      }
     }
   },
   "COMPONENTS": {
